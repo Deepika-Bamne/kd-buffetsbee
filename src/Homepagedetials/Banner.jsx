@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 
-
 const Banner = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [offerType, setOfferType] = useState("");
@@ -61,38 +60,37 @@ const Banner = () => {
     },
   ];
 
-  const handleSearch = () => {
-    const filtered = offers.filter((item) => {
-      const nameMatch = searchTerm
-        ? item.name.toLowerCase().includes(searchTerm.toLowerCase())
-        : true;
+const handleSearch = () => {
+  const filtered = offers.filter((item) => {
+    const nameMatch =
+      !searchTerm ||
+      item.name.toLowerCase().includes(searchTerm.toLowerCase());
 
-      const typeMatch = offerType ? item.type === offerType : true;
+    const typeMatch = !offerType || item.type === offerType;
+    const categoryMatch = !category || item.category === category;
 
-      const categoryMatch = category ? item.category === category : true;
+    const priceMatch = !priceRange || (() => {
+      const [min, max] = priceRange.split("-").map(Number);
+      return max
+        ? item.price >= min && item.price <= max
+        : item.price >= min;
+    })();
 
-      const priceMatch = priceRange
-        ? priceRange === "0-199"
-          ? item.price <= 199
-          : priceRange === "200-399"
-          ? item.price >= 200 && item.price <= 399
-          : item.price >= 400
-        : true;
+    return nameMatch && typeMatch && categoryMatch && priceMatch;
+  });
 
-      return nameMatch && typeMatch && categoryMatch && priceMatch;
-    });
-
-    setResults(filtered);
-  };
+  setResults(filtered);
+};
 
   return (
-    <div
-      className="banner"
-    >
-      <div className="banner-content" style={{
-        backgroundImage:
-          "url('https://ik.imagekit.io/Bookmybuffet111/Homepage-slider/BUffet1..jpg?updatedAt=1770556254874')",
-      }}>
+    <div className="banner">
+      <div
+        className="banner-content"
+        style={{
+          backgroundImage:
+            "url('https://ik.imagekit.io/Bookmybuffet111/Homepage-slider/BUffet1..jpg?updatedAt=1770556254874')",
+        }}
+      >
         <h1>Find Best Buffet Offers in Indore</h1>
         <p>Search unlimited buffet and combo deals at top restaurants</p>
 
@@ -135,23 +133,29 @@ const Banner = () => {
           <button onClick={handleSearch}>Search</button>
         </div>
       </div>
-<h1>All Offers & Combo</h1>
-{results.length > 0 && (
-  <div className="search-results">
-    {results.map((item) => (
-      <div key={item.id} className="result-card">
-        <img className="search-results-image" src={item.image} alt={item.name} />
-        <div className="card-content">
-          <h3>{item.name}</h3>
-          <p className="search-results-price">Price: ₹{item.price}</p>
-          <p className="search-results-Offer">Offer: {item.type}</p>
-          <p className="search-results-items">Items: {item.items}+</p>
-          <p className="search-results-Category">Category: {item.category || "N/A"}</p>
+      <h1>All Offers & Combo</h1>
+      {results.length > 0 && (
+        <div className="search-results">
+          {results.map((item) => (
+            <div key={item.id} className="result-card">
+              <img
+                className="search-results-image"
+                src={item.image}
+                alt={item.name}
+              />
+              <div className="card-content">
+                <h3>{item.name}</h3>
+                <p className="search-results-price">Price: ₹{item.price}</p>
+                <p className="search-results-Offer">Offer: {item.type}</p>
+                <p className="search-results-items">Items: {item.items}+</p>
+                <p className="search-results-Category">
+                  Category: {item.category || "N/A"}
+                </p>
+              </div>
+            </div>
+          ))}
         </div>
-      </div>
-    ))}
-  </div>
-)}
+      )}
     </div>
   );
 };
