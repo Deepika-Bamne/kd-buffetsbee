@@ -1,9 +1,24 @@
-import React from 'react'
+import React from "react";
+import { Link } from "react-router-dom";
 
-function Login() {
+const Login = () => {
   return (
-    <div>Login</div>
-  )
-}
+    <div className="auth-container">
+      <h2>Login</h2>
 
-export default Login
+      <form>
+        <input type="email" placeholder="Email" />
+        <input type="password" placeholder="Password" />
+
+        <button type="submit">Login</button>
+      </form>
+
+      <p>
+        Don’t have an account?{" "}
+        <Link to="/create-account">Create Account</Link>
+      </p>
+    </div>
+  );
+};
+
+export default Login;

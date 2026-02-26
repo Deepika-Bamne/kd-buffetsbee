@@ -5,7 +5,7 @@ const Banner = () => {
   const [offerType, setOfferType] = useState("");
   const [priceRange, setPriceRange] = useState("");
   const [category, setCategory] = useState("");
-  const [results, setResults] = useState([]);
+
 
   const offers = [
     {
@@ -60,8 +60,8 @@ const Banner = () => {
     },
   ];
 
-const handleSearch = () => {
-  const filtered = offers.filter((item) => {
+
+  const filteredData = offers.filter((item) => {
     const nameMatch =
       !searchTerm ||
       item.name.toLowerCase().includes(searchTerm.toLowerCase());
@@ -79,8 +79,7 @@ const handleSearch = () => {
     return nameMatch && typeMatch && categoryMatch && priceMatch;
   });
 
-  setResults(filtered);
-};
+
 
   return (
     <div className="banner">
@@ -130,13 +129,13 @@ const handleSearch = () => {
             <option value="Non-Veg">Non-Veg</option>
           </select>
 
-          <button onClick={handleSearch}>Search</button>
+         
         </div>
       </div>
       <h1>All Offers & Combo</h1>
-      {results.length > 0 && (
+
         <div className="search-results">
-          {results.map((item) => (
+      {(filteredData || offers).map((item)=>(
             <div key={item.id} className="result-card">
               <img
                 className="search-results-image"
@@ -153,9 +152,11 @@ const handleSearch = () => {
                 </p>
               </div>
             </div>
-          ))}
+                  ))}
         </div>
-      )}
+{filteredData && filteredData.length === 0 && (
+  <p className="notfound-data">No offers found</p>
+)}
     </div>
   );
 };

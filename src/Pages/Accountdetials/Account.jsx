@@ -1,9 +1,17 @@
-import React from 'react'
+import React from "react";
 
-function Account() {
+const AccountDetails = () => {
   return (
-    <div>Account</div>
-  )
-}
+    <div className="account-container">
+      <h2>Account Details</h2>
 
-export default Account
+      <div className="account-card">
+        <p><strong>Name:</strong> User Name</p>
+        <p><strong>Email:</strong> user@email.com</p>
+        <p><strong>Member Since:</strong> 2026</p>
+      </div>
+    </div>
+  );
+};
+
+export default AccountDetails;

@@ -427,7 +427,21 @@
 .contact-form button:hover {
   background: #0056b3;
 }
-
+p.notfound-data {
+    color: #000;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 20px;
+    font-weight: 600;
+    font-size: 25px;
+    font-family: inherit;
+background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s, box-shadow 0.3s;
+   
+}
 
 @media screen and (max-width: 768px) {
       .contact-content {
