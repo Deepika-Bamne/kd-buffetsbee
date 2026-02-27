@@ -423,7 +423,84 @@
   font-size: 15px;
   transition: 0.3s;
 }
+/* Background */
+.auth-container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #ff5a00, #00bcd4);
+  padding: 20px;
+}
 
+/* Card */
+.auth-card {
+  background: #ffffff;
+  padding: 40px;
+  width: 100%;
+  max-width: 400px;
+  border-radius: 15px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+  margin:0 auto;
+}
+
+/* Heading */
+.auth-card h2 {
+  text-align: center;
+  margin-bottom: 25px;
+  color: #333;
+}
+
+/* Inputs */
+.auth-card input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 14px;
+  transition: 0.3s;
+}
+
+.auth-card input:focus {
+  border-color: #ff5a00;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(255, 90, 0, 0.2);
+}
+
+/* Button */
+.auth-card button {
+  width: 100%;
+  padding: 12px;
+  background: #ff5a00;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.auth-card button:hover {
+  background: #e14e00;
+}
+
+/* Link text */
+.auth-card p {
+  text-align: center;
+  margin-top: 15px;
+  font-size: 14px;
+}
+
+.auth-card a {
+  color: #ff5a00;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.auth-card a:hover {
+  text-decoration: underline;
+}
 .contact-form button:hover {
   background: #0056b3;
 }

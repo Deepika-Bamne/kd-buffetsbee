@@ -1,25 +1,45 @@
-import React from "react";
-import { Link } from "react-router-dom";
 
-const CreateAccount = () => {
+import React, { useState } from "react";
+import { useNavigate, Link } from "react-router-dom";
+
+const Createaccount = () => {
+   const navigate = useNavigate();
+ const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+const handleRegister =(e)=>{
+e.preventDefault();
+const userdata = {email, name, password};
+localStorage.setItem("user", JSON.stringify(userdata));
+
+   alert("Account Created Successfully!");
+    navigate("/account/login");
+
+}
+
   return (
-    <div className="auth-container">
-      <h2>Create Account</h2>
+      <div className="auth-card">
+        <h2>Create Account</h2>
 
-      <form>
-        <input type="text" placeholder="Full Name" />
-        <input type="email" placeholder="Email" />
-        <input type="password" placeholder="Password" />
-        <input type="password" placeholder="Confirm Password" />
+        <form onSubmit={handleRegister}>
+          <input required type="text" placeholder="Full Name" value={name}
+            onChange={(e) => setName(e.target.value)} />
 
-        <button type="submit">Register</button>
-      </form>
+          <input required type="email" placeholder="Email" value={email}
+            onChange={(e) => setEmail(e.target.value)} />
 
-      <p>
-        Already have an account? <Link to="/">Login</Link>
-      </p>
-    </div>
+          <input required type="password" placeholder="Password" value={password}
+            onChange={(e) => setPassword(e.target.value)} />
+
+          <button type="submit">Register</button>
+        </form>
+        <p style={{ marginTop: "15px", textAlign: "center" }}>
+          Already registered?{" "}
+        <Link to="/account/login">Login</Link>
+        </p>
+        </div>
   );
 };
 
-export default CreateAccount;
+export default Createaccount;

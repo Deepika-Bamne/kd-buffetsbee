@@ -19,7 +19,7 @@ const Header = () => {
               <Link to="/contactus">Contact Us</Link>
             </li>
             <li>
-              <Link to="/account/login">Account</Link>
+              <Link to="/account">Account</Link>
             </li>
           </ul>
         </nav>
